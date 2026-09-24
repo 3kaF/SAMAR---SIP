@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>SAMAR-SIP!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #03738c 0%, #e2ecef 40%, #f2f2f2 100%);
+      min-height: 100vh;
+      color: #333;
+      margin: 0;
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      transition: background 0.4s ease;
+    }
+
+    .card {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 440px;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: #03738C;
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #444;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #03738C;
+    }
+
+    button {
+      width: 100%;
+      background-color: #03738C;
+      color: white;
+      border: none;
+      padding: 11px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background-color: #e0e0e0;
+      color: #333;
+      margin-top: 15px;
+    }
+
+    #kotak-status {
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 15px 0;
+      border: 1.5px solid transparent;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    #teks-detail {
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      background: #fafafa;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="halaman-form">
+    <h1>SAMAR-SIP!</h1>
+    <p class="subtitle">Semarang Air Sensored and Mitigation</p>
+
+    <label>Nama:</label>
+    <input id="nama" type="text" placeholder="Masukkan nama">
+
+    <label>Nomor Rumah:</label>
+    <input id="nomor" type="text" placeholder="Nomor rumah">
+
+    <label>Kode Distrik:</label>
+    <input id="kode" type="text" placeholder="A01 / A02 / A03">
+
+    <button onclick="cekUdara()">MASUK</button>
+  </div>
+
+  <div class="card" id="halaman-hasil" style="display: none;">
+    <h2 id="judul-hasil" style="margin-top: 0;">Hasil Pemantauan</h2>
+    <p style="margin: 0 0 10px 0;">Halo <b id="teks-nama"></b>, Rumah No: <b id="teks-nomor"></b></p>
+
+    <div id="kotak-status">
+      <h3 id="teks-status" style="margin: 0; font-size: 16px;"></h3>
+    </div>
+
+    <pre id="teks-detail"></pre>
+
+    <button class="btn-secondary" onclick="location.reload()">Cek Lagi</button>
+  </div>
+
+  <script>
+    function cekUdara() {
+      let inputNama = document.getElementById("nama").value;
+      let inputNomor = document.getElementById("nomor").value;
+      let inputKode = document.getElementById("kode").value.toUpperCase();
+
+      if (inputNama == "" || inputNomor == "" || inputKode == "") {
+        alert("Semua data harus diisi ya!");
+        return;
+      }
+
+      document.getElementById("teks-nama").innerText = inputNama;
+      document.getElementById("teks-nomor").innerText = inputNomor;
+
+      let kotak = document.getElementById("kotak-status");
+      let status = document.getElementById("teks-status");
+      let detail = document.getElementById("teks-detail");
+      let judul = document.getElementById("judul-hasil");
+
+      if (inputKode == "A01") {
+        document.body.style.background = "linear-gradient(135deg, #728A6E 0%, #D9E4D7 40%, #ffffff 100%)";
+        judul.style.color = "#728A6E";
+        status.innerText = "Kualitas Udara: Sangat Baik! 🟢";
+        kotak.style.background = "linear-gradient(135deg, #D9E4D7 0%, #ffffff 100%)";
+        kotak.style.color = "#364e33";
+        kotak.style.borderColor = "#728A6E";
+        detail.innerText = 
+`》Suhu Saat Ini: 33°C
+》Air Quality Index: 47
+》Kadar PM2.5: 12 µg/m³
+》Persentase Keamanan: 83%
+
+🟢 You Have To Know 🟢
+♡ Risiko penularan atau kambuhnya ISPA akibat faktor lingkungan berada di titik paling rendah.
+♡ Disarankan membuka ventilasi agar regulasi dan perputaran udara berjalan dengan lancar.
+♡ Sangat disarankan untuk melakukan aktivitas fisik di luar ruangan.
+♡ Sangat aman dan ideal untuk mengadakan kegiatan luar ruangan bersama, seperti olahraga atau kerja bakti lingkungan.`;
+      } 
+      else if (inputKode == "A02") {
+        document.body.style.background = "linear-gradient(135deg, #ffe745 0%, #fff7b3 40%, #ffffff 100%)";
+        judul.style.color = "#bfa100";
+        status.innerText = "Kualitas Udara: Normal (Cukup Baik) 🟡";
+        kotak.style.background = "linear-gradient(135deg, #ffe745 0%, #ffffff 100%)";
+        kotak.style.color = "#473c00";
+        kotak.style.borderColor = "#fceb53";
+        detail.innerText = 
+`》Suhu Saat Ini: 32°C
+》Air Quality Index (AQI): 75
+》Kadar PM2.5: 24 µg/m³
+》Persentase Keamanan: 60%
+
+🟡 You Have To Know 🟡
+♡ Kualitas udara secara umum aman bagi populasi sehat, namun polutan mulai sedikit meningkat.
+♡ Kelompok rentan (anak balita, lansia, penderita asma) berisiko mengalami gejala awal seperti batuk atau bersin ringan.
+♡ Kelompok rentan disarankan mengurangi aktivitas fisik yang terlalu berat atau lama di luar ruangan.
+♡ Mulai nyalakan penjernih udara (air purifier) di dalam ruangan jika diperlukan.
+♡ Dihimbau untuk menggunakan masker saat beraktivitas di area terbuka.
+♡ Kerja bakti luar ruangan sebaiknya dibatasi; prioritaskan pembersihan area dalam ruangan (indoor) dan hindari aktivitas yang memicu banyak debu.`;
+      } 
+      else if (inputKode == "A03") {
+        document.body.style.background = "linear-gradient(135deg, #c30010 0%, #f7c1c5 40%, #ffffff 100%)";
+        judul.style.color = "#c30010";
+        status.innerText = "Kualitas Udara: Waspada (Tidak Sehat)! 🔴";
+        kotak.style.background = "linear-gradient(135deg, #ee6b6e 0%, #ffffff 100%)";
+        kotak.style.color = "#7a000a";
+        kotak.style.borderColor = "#c30010";
+        detail.innerText = 
+`》Suhu Saat Ini: 34°C
+》Air Quality Index (AQI): 135
+》Kadar PM2.5: 58 µg/m³
+》Persentase Keamanan: 25%
+
+🔴 You Have To Know 🔴
+♡ Risiko lonjakan kasus dan penularan ISPA berada di tingkat yang tinggi berbahaya.
+♡ Wajib menggunakan masker respirator (seperti N95/KN95/KF94) jika terpaksa harus beraktivitas di luar ruangan.
+♡ Tutup rapat semua jendela dan pintu, lalu optimalkan penggunaan air purifier di dalam ruangan.
+♡ Pindahkan dan lakukan seluruh aktivitas fisik atau olahraga ke dalam ruangan (indoor).
+♡ Batalkan atau tunda semua kegiatan massal di luar ruangan, termasuk kerja bakti, jalan sehat, dan olahraga.`;
+      } 
+      else {
+        alert("Kode distrik tidak ditemukan! Gunakan A01, A02, atau A03.");
+        return;
+      }
+
+      document.getElementById("halaman-form").style.display = "none";
+      document.getElementById("halaman-hasil").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
