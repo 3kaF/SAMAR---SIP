@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAMAR-SIP!</title>
   <style>
     body {
@@ -10,7 +11,7 @@
       min-height: 100vh;
       color: #333;
       margin: 0;
-      padding: 30px 15px;
+      padding: 20px 15px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,8 +22,8 @@
     .card {
       background-color: #ffffff;
       width: 100%;
-      max-width: 440px;
-      padding: 24px;
+      max-width: 480px;
+      padding: 22px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
@@ -32,11 +33,12 @@
       color: #03738C;
       margin-top: 0;
       margin-bottom: 4px;
+      font-size: 24px;
     }
 
     .subtitle {
       color: #666;
-      font-size: 14px;
+      font-size: 13.5px;
       margin-top: 0;
       margin-bottom: 20px;
     }
@@ -51,12 +53,12 @@
 
     input[type="text"] {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
       box-sizing: border-box;
       margin-bottom: 16px;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     input[type="text"]:focus {
@@ -69,7 +71,7 @@
       background-color: #03738C;
       color: white;
       border: none;
-      padding: 11px;
+      padding: 12px;
       border-radius: 6px;
       font-size: 15px;
       font-weight: bold;
@@ -99,10 +101,12 @@
       font-size: 13.5px;
       line-height: 1.6;
       white-space: pre-wrap;
+      word-break: break-word;
       background: #fafafa;
       padding: 14px;
       border-radius: 6px;
       border: 1px solid #eee;
+      margin: 12px 0 0 0;
     }
   </style>
 </head>
@@ -125,11 +129,11 @@
   </div>
 
   <div class="card" id="halaman-hasil" style="display: none;">
-    <h2 id="judul-hasil" style="margin-top: 0;">Hasil Pemantauan</h2>
-    <p style="margin: 0 0 10px 0;">Halo <b id="teks-nama"></b>, Rumah No: <b id="teks-nomor"></b></p>
+    <h2 id="judul-hasil" style="margin-top: 0; font-size: 20px;">Hasil Pemantauan</h2>
+    <p style="margin: 0 0 10px 0; font-size: 14px;">Halo <b id="teks-nama"></b>, Rumah No: <b id="teks-nomor"></b></p>
 
     <div id="kotak-status">
-      <h3 id="teks-status" style="margin: 0; font-size: 16px;"></h3>
+      <h3 id="teks-status" style="margin: 0; font-size: 15.5px;"></h3>
     </div>
 
     <pre id="teks-detail"></pre>
